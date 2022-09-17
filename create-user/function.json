@@ -16,5 +16,5 @@
       "name": "res"
     }
   ],
-  "scriptFile": "../dist/bookiebuddy-create-user/index.js"
+  "scriptFile": "../dist/create-user/index.js"
 }
