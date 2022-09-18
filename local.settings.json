@@ -1,0 +1,6 @@
+{
+    "IsEncrypted": false,
+    "Values": {
+        "bookiebuddydb": "mongodb://localhost:27017"
+    }
+}

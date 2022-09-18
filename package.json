@@ -6,12 +6,16 @@
     "build": "tsc",
     "watch": "tsc -w",
     "prestart": "npm run build",
-    "start": "npm run build && func start",
-    "test": "echo \"No tests yet...\""
+    "start": "npm run build && func start -p 2000",
+    "test": "echo \"No tests yet...\"",
+    "clean": "rm -r dist"
   },
   "devDependencies": {
     "@azure/functions": "^3.0.0",
     "@types/node": "16.x",
     "typescript": "^4.0.0"
+  },
+  "dependencies": {
+    "mongodb": "^4.9.1"
   }
 }

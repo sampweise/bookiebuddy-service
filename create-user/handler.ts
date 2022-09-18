@@ -6,14 +6,14 @@ const handler: AzureFunction = async function (context: Context, req: HttpReques
     context.log('HTTP trigger function processed a request.');
     try{
         const user: User = req.body;
-        const response = await createUser(user);
+        const response = await createUser(user, context);
         context.res = {
             body: response
         };
     }
     catch (e)
     {
-        console.log(e);
+        context.log(e);
         context.res = {
             status: 500,
             body: e
