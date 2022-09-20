@@ -4,7 +4,8 @@ import { getUser } from "../database/usersDatabase"
 const handler: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
     context.log('HTTP trigger function processed a request.');
     try{
-        const email: string = req.params.email;
+        const email: string = req.query.email;
+        console.log("email: ", email);
         const response = await getUser(email, context);
         context.res = {
             body: response
