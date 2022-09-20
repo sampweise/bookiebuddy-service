@@ -13,3 +13,15 @@ export const createUser = async (user: User, context: Context): Promise<InsertOn
         return Promise.reject(e);
     }
 }
+
+export const getUser = async (email: string, context: Context): Promise<Object> => {
+    context.log("Connecting to Database");
+    try {
+        const collection = await connect("authentication", "users");
+        context.log("Finding user: " + email);
+        return await collection.findOne({email})
+    }
+    catch (e) {
+        return Promise.reject(e);
+    }
+}
