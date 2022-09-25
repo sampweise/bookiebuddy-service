@@ -1,17 +1,18 @@
-const userSchema: (JsonSchema7) = {
+import { JSONSchema7 } from "json-schema"
+
+const userSchema: JSONSchema7 = {
     "title": "users",
+    "type": "object",
     "required": [
-        "_id",
         "firstname",
         "lastname",
         "email",
         "password",
     ],
     "properties": {
-        "_id": { "bsonType": "objectId" },
-        "firstname": { "bsonType": "string" },
-        "lastname": { "bsonType": "string" },
-        "email": { "bsonType": "string" },
-        "password": { "bsonType": "string"}
+        "firstname": { "type": "string" },
+        "lastname": { "type": "string" },
+        "email": { "type": "string" },
+        "password": { "type": "string"}
     }
 }
