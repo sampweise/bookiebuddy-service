@@ -1,5 +1,6 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions"
-import { getUser } from "../database/usersDatabase"
+import { getUser } from "../src/database/usersDatabase"
+import { bearerStrategy } from "../src/middleware/bearerStrategy";
 
 /*Build Base Backend Requirement 7:
     -This functions connects with the mongodb database in the authorization user database
@@ -15,6 +16,8 @@ import { getUser } from "../database/usersDatabase"
 const handler: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
     context.log('HTTP trigger function processed a request.');
     try{
+        //Calls the token bearer strategy
+        await bearerStrategy(context, req);
         //Store email from url query param
         const email: string = req.query.email;
         console.log("email: ", email);

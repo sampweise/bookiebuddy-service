@@ -16,5 +16,5 @@
       "name": "res"
     }
   ],
-  "scriptFile": "../dist/create-user/handler.js"
+  "scriptFile": "../dist/func-create-user/handler.js"
 }
