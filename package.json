@@ -17,6 +17,8 @@
   },
   "dependencies": {
     "@types/json-schema": "^7.0.11",
+    "@types/jsonwebtoken": "^8.5.9",
+    "jsonwebtoken": "^8.5.1",
     "mongodb": "^4.9.1"
   }
 }

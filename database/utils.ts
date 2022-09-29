@@ -1,4 +1,4 @@
-import { MongoClient } from "mongodb";
+import { Collection, MongoClient } from "mongodb";
 
 /*Build Base Backend Requirement 7:
     -Description: This functions connects with the mongodb database in the authorization user database
@@ -11,7 +11,7 @@ import { MongoClient } from "mongodb";
     -Errors: If the connection to the database fails or if the user send an incorrect payload the errors response
              is a 500
 */
-export const connect = async (databaseName: string, collectionName: string) => {
+export const connect = async (databaseName: string, collectionName: string): Promise<Collection<any>> => {
     //Grab connection string environment variable
     const connectionString = process.env["bookiebuddydb"];
     //Connect to the monog cluster
