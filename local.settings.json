@@ -1,6 +1,7 @@
 {
     "IsEncrypted": false,
     "Values": {
-        "bookiebuddydb": "mongodb://localhost:27017"
+        "bookiebuddydb": "mongodb://localhost:27017",
+        "jwt_secret": "sdfgwe#r4&r2&2=!35924"
     }
 }

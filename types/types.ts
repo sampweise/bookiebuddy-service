@@ -1,7 +1,12 @@
 //Base user type
 export interface User {
-    firstname: String;
-    lastname: String;
-    email: String;
+    firstname: string;
+    lastname: string;
+    email: string;
     password: string;
+}
+
+export interface Token {
+    email: string;
+    token: string;
 }

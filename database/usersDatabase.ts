@@ -1,6 +1,6 @@
 import { User } from "../types/types";
 import { Context } from "@azure/functions";
-import { InsertOneResult } from "mongodb";
+import { Collection, InsertOneResult } from "mongodb";
 import { connect } from "./utils";
 
 /*Build Base Backend Requirement 7:
@@ -39,14 +39,15 @@ export const createUser = async (user: User, context: Context): Promise<InsertOn
     -Errors: If the connection to the database fails or if the user send an incorrect payload the errors response
              is a 500
 */
-export const getUser = async (email: string, context: Context): Promise<Object> => {
+export const getUser = async (email: string, context: Context): Promise<User> => {
     context.log("Connecting to Database");
     try {
         //Connecting to authorization data and user collection and storing that collection
-        const collection = await connect("authentication", "users");
+        const collection: Collection<User> = await connect("authentication", "users");
         context.log("Finding user: " + email);
         //Calling the findOne function with the email passed in the query string
-        return await collection.findOne({email});
+        const result: User = await collection.findOne({email});
+        return result ? Promise.resolve(result) : Promise.reject({code: 404, message: "User Not Found"});
     }
     catch (e) {
         //If there is an error throw the error back up
