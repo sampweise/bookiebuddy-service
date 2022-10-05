@@ -33,7 +33,7 @@ const handler: AzureFunction = async function (context: Context, req: HttpReques
         context.log(e.message);
         //Return a 500 error with the body being the error message returned.
         context.res = {
-            status: 500,
+            status: e.code,
             body: e.message
         };
     }
