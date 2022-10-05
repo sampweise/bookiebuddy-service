@@ -1,7 +1,11 @@
 {
-    "IsEncrypted": false,
-    "Values": {
-        "bookiebuddydb": "mongodb://localhost:27017",
-        "jwt_secret": "sdfgwe#r4&r2&2=!35924"
-    }
-}
+  "IsEncrypted": false,
+  "Values": {
+    "bookiebuddydb": "mongodb://localhost:27017",
+    "jwt_secret": "sdfgwe#r4&r2&2=!35924",
+    "FUNCTIONS_WORKER_RUNTIME": "node"
+  },
+  "Host": {
+    "CORS": "*"
+  }
+} 
