@@ -9,7 +9,7 @@ const handler: AzureFunction = async function (context: Context, req: HttpReques
     const { email, password } = req.body;
     try{
         //Calls the token bearer strategy
-        await bearerStrategy(context, req);
+       //await bearerStrategy(context, req);
         const token = await getOrCreateToken(email, password, context);
         context.res = {
             body: token
