@@ -1,5 +1,4 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions";
-import { userInfo } from "os";
 import { getOrCreateToken } from "../src/database/tokenDatabase";
 import { bearerStrategy } from "../src/middleware/bearerStrategy";
 

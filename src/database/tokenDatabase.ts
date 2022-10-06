@@ -7,13 +7,17 @@ import { Collection } from "mongodb";
 
 export const getOrCreateToken = async (email: string, password: string, context: Context): Promise<string> => {
     try{
+        context.log('Checking for existing user');
         const user = await getUser(email, context);
         if(user.password === password) {
+            context.log("Connecting to Database");
             const collection: Collection<Token> = await connect('authentication', 'tokens');
             const result = await collection.findOne({email});
             if(result?.token) {
+                context.log('Token found!');
                 return Promise.resolve(result.token);
             } else {
+                context.log("Creating new token for ", email);
                 const newToken = jwt.sign(
                     { email },
                     process.env['jwt_secret'],
@@ -22,7 +26,7 @@ export const getOrCreateToken = async (email: string, password: string, context:
                     email,
                     token: newToken
                 };
-                collection.insertOne({email, token: newToken})
+                collection.insertOne(tokenReq)
                 return Promise.resolve(newToken);
             }
         } else {

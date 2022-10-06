@@ -15,7 +15,7 @@ import { bearerStrategy } from "../src/middleware/bearerStrategy";
              is a 500
 */
 const createUserHandler: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
-    context.log('HTTP trigger function processed a request.');
+    context.log('Creating user for: ', req.body.email);
     try{
         //Calls the token bearer strategy
         await bearerStrategy(context, req);

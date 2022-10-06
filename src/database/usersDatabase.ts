@@ -15,11 +15,13 @@ import { connect } from "./utils";
              is a 500
 */
 export const createUser = async (user: User, context: Context): Promise<InsertOneResult<Document>> => { 
-    context.log("Connecting to Database");
     try{
+        context.log("Connecting to Database");
         //Connecting to authorization data and user collection and storing that collection
         const collection = await connect("authentication", "users");
         //Calling the insertOne function with the user passed in the payload
+        context.log(user);
+
         return await collection.insertOne(user);
     }
     catch (e) {
@@ -40,8 +42,8 @@ export const createUser = async (user: User, context: Context): Promise<InsertOn
              is a 500
 */
 export const getUser = async (email: string, context: Context): Promise<User> => {
-    context.log("Connecting to Database");
     try {
+        context.log("Connecting to Database");
         //Connecting to authorization data and user collection and storing that collection
         const collection: Collection<User> = await connect("authentication", "users");
         context.log("Finding user: " + email);
