@@ -7,7 +7,7 @@ import { bearerStrategy } from "../src/middleware/bearerStrategy";
      and then returns that information to the endpoint.
     -Cade Sarkin
     -Created: 9/20/22
-    -Revisions: 9/21/22-Cade Sarkin, 9/25/22-Sam Weise
+    -Revisions: 9/21/22-Cade Sarkin, 9/25/22-Sam Weise, 9/28/22-Sam Weise
     -Preconditions: (context: Context, req: HttpRequest) the context for the function and the request sent across
     -Postconditions: (Promise<void>) because the function returns the information through the context
     -Errors: If the connection to the database fails or if the user send an incorrect payload the errors response
