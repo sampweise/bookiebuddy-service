@@ -6,9 +6,9 @@ const getSqlData: AzureFunction = async function (context: Context, req: HttpReq
     try{
         //Calls the token bearer strategy
         //await bearerStrategy(context, req);
-        const results = getData(context);
+        const results = await getData(context);
         console.log("results: ");
-        console.log(results);
+        //console.log(results);
         context.res = {
             body: results
         };
