@@ -5,7 +5,7 @@ import { bearerStrategy } from "../src/middleware/bearerStrategy";
 const getSqlData: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
     try{
         //Calls the token bearer strategy
-        //await bearerStrategy(context, req);
+        await bearerStrategy(context, req);
         const results = await getData(context);
         console.log("results: ");
         //console.log(results);
