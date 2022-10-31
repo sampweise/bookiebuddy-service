@@ -11,7 +11,9 @@ export const getData = async (context: Context) => {
             const {analysis, ID, ...rest} = obj;
             combinedResult.push(rest);
         }) 
-        return Promise.resolve(combinedResult);
+        let sortedResults = combinedResult.sort(
+            (p1, p2) => (p1.subjectivity < p2.subjectivity) ? 1 : (p1.subjectivity > p2.subjectivity) ? -1 : 0);
+        return Promise.resolve(sortedResults);
     } catch (err) {
         console.log(err);
     }
