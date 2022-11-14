@@ -43,3 +43,10 @@ export const connectSql = (): Connection => {
     const connection = new Connection(config);
     return connection;
 }
+
+export const getEnvironment = () => {
+    return {
+        adminToken: process.env['adminToken'],
+        bookiebuddyService: process.env['bookiebuddyService']
+    };
+}
