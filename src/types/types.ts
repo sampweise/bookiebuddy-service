@@ -4,6 +4,7 @@ export interface User {
     lastname: string;
     email: string;
     password: string;
+    team: string;
 }
 
 export interface Token {
