@@ -29,3 +29,18 @@ export const getTeams = async (context: Context): Promise<Array<Team>> => {
         return Promise.reject(e);
     }
 }
+
+export const getTeam = async (context: Context, region: String): Promise<Array<Team>> => { 
+    try{
+        context.log("Connecting to Database");
+        //Connecting to authorization data and user collection and storing that collection
+        const collection: Collection<Team> = await connect("college", "teams");
+        //Calling the insertOne function with the user passed in the payload
+        const teamArr: Array<Team> = await collection.find({region}).toArray();
+        return Promise.resolve(teamArr);
+    }
+    catch (e) {
+        //If there is an error throw the error back up
+        return Promise.reject(e);
+    }
+}
