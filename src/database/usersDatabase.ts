@@ -14,7 +14,7 @@ import { connect } from "./utils";
     -Errors: If the connection to the database fails or if the user send an incorrect payload the errors response
              is a 500
 */
-export const createUser = async (user: User, context: Context): Promise<InsertOneResult<Document>> => { 
+export const createUser = async (user: User, context: Context): Promise<User> => { 
     try{
         context.log("Connecting to Database");
         //Connecting to authorization data and user collection and storing that collection
@@ -22,7 +22,9 @@ export const createUser = async (user: User, context: Context): Promise<InsertOn
         //Calling the insertOne function with the user passed in the payload
         context.log(user);
 
-        return await collection.insertOne(user);
+        await collection.insertOne(user);
+
+        return user;
     }
     catch (e) {
         //If there is an error throw the error back up
