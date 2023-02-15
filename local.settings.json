@@ -5,8 +5,7 @@
     "adminToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGJvb2tpZWJ1ZGR5LmJldCIsImlhdCI6MTY2NDQyMTQyOX0.NfARbOEPW5ajnRqce8h7iru5HB4Xk8BW0rlVsUnbDAo",
     "bookiebuddydb": "mongodb://localhost:27017",
     "jwt_secret": "sdfgwe#r4&r2&2=!35924",
-    "FUNCTIONS_WORKER_RUNTIME": "node",
-    "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=blakestorageaccount581;AccountKey=nkkvw1xse99lhH2Cdf89T3PXbRpy/UAhdifhBddYew0QLOvcl8e2m/zMICpkFJt7+RufBQPgySLC+AStHxZGbQ==;EndpointSuffix=core.windows.net"
+    "FUNCTIONS_WORKER_RUNTIME": "node"
   },
   "Host": {
     "CORS": "*"
