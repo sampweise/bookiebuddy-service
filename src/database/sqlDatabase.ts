@@ -1,19 +1,27 @@
 import { Context } from '@azure/functions';
 const sql = require('mssql')
 
-export const getData = async (context: Context) => {
+//This function will connect to our sql database and return the tweets for a given team,
+//these tweets will then be aggragated and return and average sentiment score
+export const getData = async (context: Context, team: string) => {
     try {
         // make sure that any items are correctly URL encoded in the connection string
+        //const pool = new sql.ConnectionPool('Server=tcp:bookie-buddy-server.database.windows.net,1433;Initial Catalog=BookieBuddyDB1;Persist Security Info=False;User ID=blakerichmeier;Password=Test123*;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30');
+        const queryRequest = 'SELECT * FROM [dbo].[tweets] t1, [dbo].[' + team +'] t2 WHERE t1.ID = t2.ID'
         await sql.connect('Server=tcp:bookie-buddy-server.database.windows.net,1433;Initial Catalog=BookieBuddyDB1;Persist Security Info=False;User ID=blakerichmeier;Password=Test123*;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30');
-        const result = await sql.query`SELECT * FROM [dbo].[sentiment_analysis]`;
-        let combinedResult = [];
+        const result = await sql.query(queryRequest);
+        let score = 0
+        let count = 0 
         result.recordset.map((obj) => {
             const {analysis, ID, ...rest} = obj;
-            combinedResult.push(rest);
+            if(rest.subjectivity != 0) {
+                count += 1
+                score += parseFloat(rest.polarity)
+                console.log(rest.polarity)
+            }
         }) 
-        let sortedResults = combinedResult.sort(
-            (p1, p2) => (p1.subjectivity < p2.subjectivity) ? 1 : (p1.subjectivity > p2.subjectivity) ? -1 : 0);
-        return Promise.resolve(sortedResults);
+        const sentimentScore = (score/count)*100
+        return sentimentScore
     } catch (err) {
         console.log(err);
     }

@@ -15,6 +15,6 @@
         "name": "res"
       }
     ],
-    "scriptFile": "../dist/func-sql/handler.js"
+    "scriptFile": "../dist/func-get-sentiment-score/handler.js"
   }
   
