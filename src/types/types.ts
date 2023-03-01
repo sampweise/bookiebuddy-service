@@ -24,6 +24,7 @@ export interface Team {
     state: string;
     latitude: number;
     longitude: number;
+    apiId: number;
 }
 
 export type UpdateUser = Omit<User, 'password'>;

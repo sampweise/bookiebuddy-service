@@ -14,6 +14,7 @@ import { Context } from "@azure/functions";
 import { Collection } from "mongodb";
 import { Team } from "../types/types";
 import { connect } from "./utils";
+const axios = require("axios");
 
 export const getTeams = async (context: Context): Promise<Array<Team>> => { 
     try{
@@ -43,4 +44,23 @@ export const getTeam = async (context: Context, region: String): Promise<Array<T
         //If there is an error throw the error back up
         return Promise.reject(e);
     }
+}
+
+export const grabTeamSchedule = (team) => {
+    const options = {
+    method: 'GET',
+    url: 'https://v1.basketball.api-sports.io//games',
+    params: {timezone: 'America/Chicago', league: 116, team, season: '2022-2023'},
+    headers: {
+        'X-RapidAPI-Key': 'd5a6694b9799f24d07ccfd77de7dfcf0',
+        'X-RapidAPI-Host': 'v1.basketball.api-sports.io'
+    }
+    };
+
+    return axios.request(options).then(function (response) {
+        return Promise.resolve(response.data.response);
+    }).catch(function (error) {
+        console.error(error);
+        return Promise.reject(error);
+    });
 }
