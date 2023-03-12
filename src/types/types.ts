@@ -13,18 +13,36 @@ export interface Token {
 }
 
 export interface Team {
-    tid: number;
-    cid: number;
-    did: number;
-    region: string;
-    name: string;
-    abbrev: string;
-    pop: number;
-    city: string;
-    state: string;
-    latitude: number;
-    longitude: number;
-    apiId: number;
+    TeamID: number;
+    Key: string;
+    Active: boolean;
+    School: string;
+    Name: string;
+    ApRank: number;
+    Wins: number;
+    Losses: number;
+    ConferenceWins: number;
+    ConferenceLosses: number;
+    GlobalTeamID: number;
+    ConferenceID: number;
+    Conference: string;
+    TeamLogoUrl: string;
+    ShortDisplayName: string;
+    Stadium: Stadium;
+}
+
+interface Stadium {
+    StadiumID: number;
+    Active: boolean;
+    Name: string;
+    Address: string;
+    City: string;
+    State: string;
+    Zip: number;
+    Country: string;
+    Capacity: number;
+    GeoLat: number;
+    GeoLong: number;
 }
 
 export type UpdateUser = Omit<User, 'password'>;

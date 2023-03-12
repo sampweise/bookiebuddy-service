@@ -20,7 +20,7 @@ export const getTeams = async (context: Context): Promise<Array<Team>> => {
     try{
         context.log("Connecting to Database");
         //Connecting to authorization data and user collection and storing that collection
-        const collection: Collection<Team> = await connect("college", "teams");
+        const collection: Collection<Team> = await connect("college", "apiTeams");
         //Calling the insertOne function with the user passed in the payload
         const teamArr: Array<Team> = await collection.find({}).toArray();
         return Promise.resolve(teamArr);
@@ -31,36 +31,17 @@ export const getTeams = async (context: Context): Promise<Array<Team>> => {
     }
 }
 
-export const getTeam = async (context: Context, region: String): Promise<Array<Team>> => { 
+export const getTeam = async (context: Context, school: String): Promise<Array<Team>> => { 
     try{
         context.log("Connecting to Database");
         //Connecting to authorization data and user collection and storing that collection
-        const collection: Collection<Team> = await connect("college", "teams");
+        const collection: Collection<Team> = await connect("college", "apiTeams");
         //Calling the insertOne function with the user passed in the payload
-        const teamArr: Array<Team> = await collection.find({region}).toArray();
+        const teamArr: Array<Team> = await collection.find({Key: school}).toArray();
         return Promise.resolve(teamArr);
     }
     catch (e) {
         //If there is an error throw the error back up
         return Promise.reject(e);
     }
-}
-
-export const grabTeamSchedule = (team) => {
-    const options = {
-    method: 'GET',
-    url: 'https://v1.basketball.api-sports.io//games',
-    params: {timezone: 'America/Chicago', league: 116, team, season: '2022-2023'},
-    headers: {
-        'X-RapidAPI-Key': 'd5a6694b9799f24d07ccfd77de7dfcf0',
-        'X-RapidAPI-Host': 'v1.basketball.api-sports.io'
-    }
-    };
-
-    return axios.request(options).then(function (response) {
-        return Promise.resolve(response.data.response);
-    }).catch(function (error) {
-        console.error(error);
-        return Promise.reject(error);
-    });
 }

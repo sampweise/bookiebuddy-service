@@ -1,29 +1,28 @@
 import { Context } from "@azure/functions"
-import {getTeam, grabTeamSchedule} from "../src/database/teamDatabase";
+import {getTeam} from "../src/database/teamDatabase";
 
 const sgMail = require('@sendgrid/mail')
 
 export const handler = async function (context: Context): Promise<void> {
-    const teamArr = await getTeam(context, 'Kansas');
+    const teamArr = await getTeam(context, 'KAN');
     console.log(teamArr)
-    const teamSchedule = await grabTeamSchedule(teamArr[0].apiId);
-    teamSchedule.forEach((obj)=> {
-        console.log(obj.date) //date '2023-03-04T15:00:00-06:00'
-        console.log(obj.time) //time central '15:00'
-        console.log(obj.teams) /*teams {
-               home: {
-                 id: 203,
-                 name: 'Texas',
-                 logo: 'https://media.api-sports.io/basketball/teams/203.png'
-               },
-               away: {
-                 id: 1959,
-                 name: 'Kansas',
-                 logo: 'https://media.api-sports.io/basketball/teams/1959.png'
-               }
-             } */
+    // teamSchedule.forEach((obj)=> {
+    //     console.log(obj.date) //date '2023-03-04T15:00:00-06:00'
+    //     console.log(obj.time) //time central '15:00'
+    //     console.log(obj.teams) /*teams {
+    //            home: {
+    //              id: 203,
+    //              name: 'Texas',
+    //              logo: 'https://media.api-sports.io/basketball/teams/203.png'
+    //            },
+    //            away: {
+    //              id: 1959,
+    //              name: 'Kansas',
+    //              logo: 'https://media.api-sports.io/basketball/teams/1959.png'
+    //            }
+    //          } */
 
-    })
+    // })
     //var date = teamSchedule[0]['parameters']['date']
     let latestDate = '';
     //var date_string = date.replace('-', '')

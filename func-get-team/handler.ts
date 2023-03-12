@@ -18,10 +18,10 @@ const handler: AzureFunction = async function (context: Context, req: HttpReques
         //Calls the token bearer strategy
         await bearerStrategy(context, req);
         //Grabbing region
-        const { region } = req.query;
-        console.log(region)
+        const { school } = req.query;
+        console.log(school)
         //Call the getUser function and store the response 
-        const response = await getTeam(context, region);
+        const response = await getTeam(context, school);
         //Return the response to the end point
         context.res = {
             body: response
