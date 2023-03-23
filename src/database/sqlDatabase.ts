@@ -26,3 +26,16 @@ export const getData = async (context: Context, team: string) => {
         console.log(err);
     }
 }
+
+export const getRData = async (context: Context, team: string) => {
+    try {
+        // make sure that any items are correctly URL encoded in the connection string
+        //const pool = new sql.ConnectionPool('Server=tcp:bookie-buddy-server.database.windows.net,1433;Initial Catalog=BookieBuddyDB1;Persist Security Info=False;User ID=blakerichmeier;Password=Test123*;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30');
+        const queryRequest = 'SELECT ".pred_class", team_short_display_name, opponent_short_display_name FROM [dbo].[MLModelData]'
+        await sql.connect('Server=tcp:bookie-buddy-server.database.windows.net,1433;Initial Catalog=BookieBuddyDB1;Persist Security Info=False;User ID=blakerichmeier;Password=Test123*;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30');
+        const result = await sql.query(queryRequest);
+        return result.recordset
+    } catch (err) {
+        console.log(err);
+    }
+}
