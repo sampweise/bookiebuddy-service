@@ -17,7 +17,6 @@ export const getData = async (context: Context, team: string) => {
             if(rest.subjectivity != 0) {
                 count += 1
                 score += parseFloat(rest.polarity)
-                console.log(rest.polarity)
             }
         }) 
         const sentimentScore = (score/count)*100
